@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Editar Contato</title>
+    <title>Editar Contato</title>
 </head>
 <body>
-  <h1>Editar Contato</h1>
+    <h1>Editar Contato</h1>
 
-  <form method="POST" action="{{ url_for('main.update', id=contact.id) }}">
-    <input name="name" placeholder="Nome" value="{{ contact.name }}" required>
-    <input name="email" placeholder="Email" value="{{ contact.email }}" required>
-    <input name="phone" placeholder="Telefone" value="{{ contact.phone }}">
-    <textarea name="notes" placeholder="Observações">{{ contact.notes }}</textarea>
-    <button type="submit">Atualizar</button>
-  </form>
+    <form method="POST" action="{{ url_for('main.update', id=contact.id) }}">
+        <input type="text" name="name" value="{{ contact.name }}" required><br>
+        <input type="email" name="email" value="{{ contact.email }}" required><br>
+        <input type="text" name="phone" value="{{ contact.phone }}"><br>
+        <textarea name="notes">{{ contact.notes }}</textarea><br>
+        <button type="submit">Atualizar</button>
+    </form>
 
-  <p><a href="{{ url_for('main.index') }}">Voltar</a></p>
+    <p><a href="{{ url_for('main.index') }}">Voltar</a></p>
 </body>
 </html>

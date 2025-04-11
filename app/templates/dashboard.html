@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Meus Contatos{% endblock %}
+
+{% block content %}
+<h2>Meus Contatos</h2>
+<a href="{{ url_for('main.add_contact') }}"><button>Adicionar Contato</button></a>
+
+{% if contacts %}
+    <ul>
+        {% for contact in contacts %}
+            <li>
+                <strong>{{ contact.name }}</strong> – {{ contact.email }} – {{ contact.phone }}
+                <div class="actions">
+                    <a href="{{ url_for('main.edit_contact', contact_id=contact.id) }}">Editar</a>
+                    <a href="{{ url_for('main.delete_contact', contact_id=contact.id) }}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p class="empty">Nenhum contato adicionado ainda.</p>
+{% endif %}
+{% endblock %}

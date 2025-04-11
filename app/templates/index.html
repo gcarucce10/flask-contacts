@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Agenda de Contatos</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Meus Contatos</title>
 </head>
 <body>
-  <h1>Agenda de Contatos online</h1>
+    <h1>Bem-vindo, {{ current_user.email }}</h1>
 
-  <ul>
-    {% for contact in contacts %}
-      <li>
-        <div class="contact-info"><strong>{{ contact.name }}</strong>
-            <span>{{ contact.email }} - {{ contact.phone }}</span>
-            <p>{{ contact.notes }}</p>
-        </div>
-        <div class="actions">
-            <a href="{{ url_for('main.delete', id=contact.id) }}">Remover</a> |
-            <a href="{{ url_for('main.edit', id=contact.id) }}">Editar</a>
-        </div>
-      </li>
-      {%else%}
-        <li class="empty">Nenhum contato encontrado</li>
-    {% endfor %}
-  </ul>
+    <h2>Adicionar Contato</h2>
+    <form method="POST" action="{{ url_for('main.create') }}">
+        <input type="text" name="name" placeholder="Nome" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="text" name="phone" placeholder="Telefone"><br>
+        <textarea name="notes" placeholder="Anotações"></textarea><br>
+        <button type="submit">Salvar</button>
+    </form>
 
-  <h2>Adicionar Contato</h2>
-  <form method="POST" action="{{ url_for('main.create') }}">
-    <input name="name" placeholder="Nome" required>
-    <input name="email" placeholder="Email" required>
-    <input name="phone" placeholder="Telefone">
-    <textarea name="notes" placeholder="Observações"></textarea>
-    <button type="submit">Salvar</button>
-  </form>
+    <h2>Seus Contatos</h2>
+    <ul>
+        {% for contact in contacts %}
+            <li>
+                <strong>{{ contact.name }}</strong> - {{ contact.email }} - {{ contact.phone }}
+                <br>{{ contact.notes }}
+                <br>
+                <a href="{{ url_for('main.edit', id=contact.id) }}">Editar</a> |
+                <a href="{{ url_for('main.delete', id=contact.id) }}">Excluir</a>
+            </li>
+            <hr>
+        {% else %}
+            <p>Você ainda não tem contatos cadastrados.</p>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{{ url_for('main.logout') }}">Logout</a></p>
 </body>
 </html>
