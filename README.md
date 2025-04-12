@@ -1,6 +1,44 @@
 # 📒 Agenda de Contatos Online
 
-Um pequeno sistema CRUD (Create, Read, Update, Delete) desenvolvido com **Flask**, **PostgreSQL**, **HTML** e **CSS** para gerenciamento de contatos. O projeto utiliza **Docker** para facilitar o ambiente de desenvolvimento e pode ser facilmente estendido com novos recursos.
+Um sistema web simples para gerenciar contatos pessoais, desenvolvido com **Flask**, **PostgreSQL** e **Docker**. Ele implementa um sistema de **autenticação de usuários** e permite **CRUD completo** (criar, visualizar, editar e excluir contatos) de maneira individualizada para cada usuário.
+
+---
+
+## 🧩 Estrutura do Projeto
+
+```
+.
+├── Dockerfile
+├── README.md
+├── app
+│   ├── __init__.py
+│   ├── auth
+│   │   ├── __init__.py
+│   │   └── routes.py
+│   ├── extensions.py
+│   ├── models.py
+│   ├── routes.py
+│   ├── static
+│   │   └── style.css
+│   └── templates
+│       ├── add_contact.html
+│       ├── base.html
+│       ├── dashboard.html
+│       ├── edit_contact.html
+│       ├── index.html
+│       ├── login.html
+│       └── register.html
+├── docker-compose.yml
+├── migrations
+│   ├── README
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+│       └── e5d01cfe1a7b_add_user_id_to_contact.py
+├── requirements.txt
+└── run.py
+```
 
 ---
 
@@ -8,11 +46,14 @@ Um pequeno sistema CRUD (Create, Read, Update, Delete) desenvolvido com **Flask*
 
 - **Python 3.8+**
 - **Flask** – microframework para aplicações web
+- **Flask-Login** – controle de autenticação
 - **PostgreSQL** – banco de dados relacional
-- **SQLAlchemy** – ORM para manipulação do banco
-- **Jinja2** – sistema de templates HTML
-- **HTML5 e CSS3** – para a interface do usuário
-- **Docker & Docker Compose** – para containerização da aplicação e do banco
+- **SQLAlchemy** – ORM para mapeamento objeto-relacional
+- **Jinja2** – sistema de templates para HTML dinâmico
+- **Docker & Docker Compose** – containerização da aplicação e do banco
+- **Alembic** – controle de versionamento do banco (migrations)
+- **HTML5 & CSS3** – construção da interface web
+
 
 ---
 
@@ -36,26 +77,30 @@ Um pequeno sistema CRUD (Create, Read, Update, Delete) desenvolvido com **Flask*
 4. Acesse no navegador:
    [http://localhost:5000](http://localhost:5000)
 
-5. Também é possível rodar o projeto com Docker (Recomendado):
+5. 🐳 Também é possível rodar o projeto com Docker (Recomendado):
     ```bash
    docker-compose up --build
 
-## Funcionalidades
+## ✅ Funcionalidades
 
+- 🔐 Autenticação de usuários (registro, login, logout)
 - ✅ Adicionar contato
 - ✅ Editar contato
 - ✅ Remover contato
-- ✅ Listar contatos
+- ✅ Listar contatos (somente os do usuário logado)
+
 
 ## 📌 Próximos Passos
 
-- 🔐 Adicionar autenticação de usuário  
-- 🔍 Implementar busca por nome, email ou telefone  
-- 🌐 Criar uma versão com API REST (Flask RESTful)  
-- 💾 Adicionar persistência de imagens de perfil  
-- ☁️ Fazer deploy na AWS ou Render  
-- 🧪 Testes automatizados (pytest)
-- 🎨 Melhorar o design e a usabilidade das páginas com um layout mais moderno 
+- 🔑 Implementar hash de senha com segurança (ex: bcrypt)
+- 🔍 Adicionar busca de contatos por nome, email ou telefone
+- 📦 Criar uma API RESTful (usando Flask-RESTful ou Flask-RESTX)
+- 🖼️ Permitir upload de imagem de perfil para os contatos
+- 🌐 Fazer deploy da aplicação (Render, Railway, ou AWS)
+- 🧪 Adicionar testes automatizados com pytest e cobertura de testes
+- 🎨 Melhorar o layout com um design responsivo e moderno (ex: Bootstrap ou Tailwind)
+- 📊 Adicionar paginação e ordenação na lista de contatos
+- 🔔 Adicionar sistema de notificações ou alertas para ações realizadas
 
 
 
