@@ -74,12 +74,12 @@ Um sistema web simples para gerenciar contatos pessoais, desenvolvido com **Flas
    ```bash
    python run.py
 
-4. Acesse no navegador:
-   [http://localhost:5000](http://localhost:5000)
-
-5. 🐳 Também é possível rodar o projeto com Docker (Recomendado):
+4. 🐳 Também é possível rodar o projeto com Docker (Recomendado):
     ```bash
    docker-compose up --build
+    
+5. Acesse no navegador:
+   [http://localhost:5000](http://localhost:5000)
 
 ## ✅ Funcionalidades
 
