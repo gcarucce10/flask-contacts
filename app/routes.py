@@ -9,7 +9,18 @@ bp = Blueprint('main', __name__)
 @bp.route('/')
 @login_required
 def index():
-    contacts = Contact.query.filter_by(user_id=current_user.id).all()
+    query = request.args.get('q', '')
+    if query:
+        contacts = Contact.query.filter(
+            Contact.user_id == current_user.id,
+            db.or_(
+                Contact.name.ilike(f"%{query}%"),
+                Contact.email.ilike(f"%{query}%"),
+                Contact.phone.ilike(f"%{query}%")
+            )).all()
+    else:
+        contacts = Contact.query.filter_by(user_id=current_user.id).all()
+        
     return render_template('index.html', contacts=contacts)
 
 # Criar um novo contato

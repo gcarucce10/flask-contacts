@@ -4,9 +4,9 @@
     <title>Meus Contatos</title>
 </head>
 <body>
-    <h1>Bem-vindo, {{ current_user.email }}</h1>
+    <h1>Bem-vindo, {{ current_user.name }}!</h1>
 
-    <h2>Adicionar Contato</h2>
+    <h2>ADICIONAR CONTATO</h2>
     <form method="POST" action="{{ url_for('main.create') }}">
         <input type="text" name="name" placeholder="Nome" required><br>
         <input type="email" name="email" placeholder="Email" required><br>
@@ -14,7 +14,11 @@
         <textarea name="notes" placeholder="Anotações"></textarea><br>
         <button type="submit">Salvar</button>
     </form>
-
+    <h2>BUSCAR CONTATO</h2>
+    <form method="GET" action="{{ url_for('main.index') }}">
+        <input type="text" name="q" placeholder="Buscar por nome, e-mail ou telefone" value="{{ request.args.get('q', '') }}">
+        <button type="submit">Buscar</button>
+    </form>
     <h2>Seus Contatos</h2>
     <ul>
         {% for contact in contacts %}

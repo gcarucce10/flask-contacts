@@ -38,7 +38,7 @@ def register():
             return redirect(url_for('auth.register'))
 
         new_user = User(name=name, email=email)
-        new_user.set_password(password)  # método no model
+        new_user.set_password(password)  
         db.session.add(new_user)
         db.session.commit()
         flash('Cadastro realizado! Faça login.', 'success')
